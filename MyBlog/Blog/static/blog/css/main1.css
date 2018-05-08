@@ -1,0 +1,182 @@
+
+/* 公共样式 */
+body{
+	font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+
+/* bootstrap 修改 */
+.navbar-default {
+  background-color: #f8f8f8;
+  /*border-color: #e7e7e7;*/
+}
+.navbar-default .navbar-brand {
+  color: #777;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-default .navbar-text {
+  color: #777;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #777;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #333;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > .disabled > a,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-default .navbar-link {
+  color: #777;
+}
+.navbar-default .navbar-link:hover {
+  color: #333;
+}
+.navbar-default .btn-link {
+  color: #777;
+}
+.navbar-default .btn-link:hover,
+.navbar-default .btn-link:focus {
+  color: #333;
+}
+.navbar-default .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-default .btn-link:hover,
+.navbar-default .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-default .btn-link:focus {
+  color: #ccc;
+}
+
+.header{
+    height: 60px;
+    background-color: black;
+}
+/* nav */
+.navbar{
+    height: 56px;
+    background-color: white;
+    line-height: 56px;
+    margin: 0 40px;
+    z-index: 1001;
+    padding: 0;
+}
+#navbar-list{
+    background-color: white;
+}
+.navbar a{
+    color: black;
+    font-weight: 800;
+}
+.navbar a:hover{
+    text-decoration: none;
+}
+.navbar .container-fluid{
+    border-bottom: 1px solid black;
+}
+/* logo */
+.navbar .container-fluid .navbar-header > .navbar-logo{
+    font-weight: 800;
+    font-size: 17px;
+}
+.navbar .container-fluid .navbar-header > .navbar-logo span{
+    color: white;
+    background-color: black;
+    padding: 3px;
+    border-radius: 5px;
+    line-height: 17px;
+}
+
+/* nav */
+.navbar-default .navbar-nav > li > a {
+    color: black;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 30px;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: #3c763d;
+}
+
+#navbar-list a{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/*移动端*/
+.intro-header{
+    height: 100px;
+    background-color: black;
+}
+
+
+
+/* 主体部分 */
+.content{
+    margin-top: 10px;
+    background-color: green;
+}
+
+.article-container{
+    height: 1000px;
+    background-color: red;
+}
+.info-container{
+    height: 400px;
+    background-color: black;
+}
+
