@@ -1,0 +1,333 @@
+/*
+ * Globals
+ */
+
+body {
+    /*font-family: Ubuntu, Georgia, "Times New Roman", Times, serif;*/
+    font-family: 'Lato', sans-serif;
+    color: #555;
+    margin-top: 70px;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    color: #333;
+}
+
+a {
+    color: black;
+}
+
+.margin-right-10 {
+    margin-right: 10px;
+}
+
+.hide{
+    display: none;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
+
+.blog-masthead {
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
+}
+
+/* 导航区*/
+.navbar-default {
+    border-top: 2px solid red;
+    margin: 0;
+    z-index: 1002;
+}
+
+.container-fluid {
+    padding: 0 5%;
+    height: 100%;
+}
+
+.navbar {
+    box-shadow: 1px 2px 5px #9d9d9d;
+    /*height: 60px;*/
+    line-height: 60px;
+}
+
+.navbar-header > .navbar-logo {
+    padding-left: 30px;
+    font-weight: 800;
+    font-size: 18px;
+    /*max-height: 56px;*/
+    width: 200px;
+}
+
+.navbar-header > .navbar-logo a {
+    color: black;
+}
+
+.navbar-header > .navbar-logo a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #000000;
+    font-weight: 800;
+    font-size: 12px;
+    margin-left: 12px;
+    line-height: 30px;
+    display: block;
+}
+
+.navbar-header > .navbar-logo a span {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 3px;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #67b168;
+}
+
+.navbtn {
+    padding-right: 1%;
+}
+
+.navbar-right {
+    padding: 0 1%;
+}
+
+.nav .navbar-nav .navbar-right {
+    line-height: 60px;
+}
+
+
+
+/* 导航区结束 */
+
+/* 移动端显示*/
+.mobile-show {
+    height: 100%;
+    /*background: url("../img/mobile.jpg") center scroll;*/
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: white center no-repeat scroll;
+    /*background: url("../img/1(1).jpg") center no-repeat scroll;*/
+    width: 100%;
+    display: table;
+    margin-bottom: 5px;
+    /*box-shadow: 1px 5px 5px #9d9d9d;*/
+    border: none;
+}
+
+.mobile-portrait {
+    margin: 0 auto;
+    /*background: url("../img/me-portrait.jpg") center no-repeat;*/
+    width: 100%;
+    /*height: 80px;*/
+    /*border-radius: 50%;*/
+    /*opacity: 0.2;*/
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.mobile-portrait img {
+    border: 0 solid white;
+    /*border-radius: 50%;*/
+}
+
+.mobile-portrait .nickname {
+    margin: 8px 0;
+}
+
+.mobile-portrait .list-inline i {
+    color: black;
+}
+
+/*/移动端显示*/
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.blog-title {
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 60px;
+    font-weight: normal;
+}
+
+.blog-description {
+    font-size: 20px;
+    color: #999;
+}
+
+/*
+ * Main column and sidebar layout
+ */
+
+.blog-main {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* 右边栏 */
+.sidebar-module {
+    padding: 15px;
+    margin: 0 -15px 15px;
+}
+
+.sidebar-module-inset {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+    margin-bottom: 0;
+}
+
+/* /右边栏 */
+
+
+
+
+
+
+
+.blog-footer p:last-child {
+    margin-bottom: 0;
+}
+
+.right-about-me {
+    margin-top: 20px;
+    /*height: 100px;*/
+}
+
+.blog-sidebar {
+    margin-top: 10px;
+    height: 100%;
+}
+
+.blog-sidebar .right-about-me{
+    background-color: #f9f9f9;
+    margin-bottom: 50px;
+}
+
+.blog-sidebar .right-about-me h5 {
+    margin-top: 10px;
+}
+
+
+
+
+.right-about-me{
+    height: 100%;
+}
+
+.blog-sidebar .right-about-me img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.right-about-me .nickname {
+    color: #808080 !important;
+    text-decoration: none;
+}
+
+.right-about-me .nickname a:hover {
+    color: rgb(1, 133, 161) !important;
+    text-decoration: none;
+}
+
+.right-about-me .signature {
+    color: rgb(191, 191, 191);
+}
+
+.sidebar-module{
+    display: block;
+}
+
+
+
+/* 文章*/
+.blog-post {
+    background-color: white;
+    margin: 20px;
+    margin-top: 30px;
+    /*border: 1px solid red;*/
+}
+
+.post-tag {
+    font-size: 15px;
+}
+
+.blog-post .info {
+
+    font-size: 16px;
+}
+
+
+/* Pagination */
+.pager {
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.pager > li > a {
+    width: 90px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 30px;
+
+}
+.pager > li > a:hover{
+    width: 90px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+    padding: 40px 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+}

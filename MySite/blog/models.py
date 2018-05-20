@@ -44,4 +44,4 @@ class Article(models.Model):
         return reverse('blog:detail', kwargs={'pk': self.pk})
 
     class Meta():
-        db_table = ''
+        ordering=["-created_time"]

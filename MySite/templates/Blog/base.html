@@ -1,19 +1,27 @@
 {% load staticfiles %}
-{% load static %}
 {% load blog_tags %}
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'blog/img/me-portrait.jpg' %}">
     <title>Weiheng's Blog</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="{% static 'blog/lib/bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/lib/fontawesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/highlights/borland.css' %}">
+    <link href="{% static 'blog/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/lib/fontawesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/lib/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/highlights/pastie.css' %}" rel="stylesheet" >
     {% block custom-css %}
     {% endblock %}
+    <script src="{% static 'blog/lib/ie-emulation-modes-warning.js' %}"></script>
+
 </head>
+
 <body>
 
 <!-- 导航条 -->
@@ -29,67 +37,45 @@
             </button>
             <div class="navbar-header navbar-logo">
                 <a href="#">
-                    <span>Weiheng</span>
-                    's Blog
+                    <span>Weiheng</span> 's Blog
                 </a>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="nav-list">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">Python</a></li>
-                <li><a href="#">GoLang</a></li>
-                <li><a href="#">分类</a></li>
-                <li><a href="#">联系</a></li>
-                <li><a href="{% url 'blog:about'  %}">关于</a></li>
+                <li><a href="/index/">首页</a></li>
+                <li><a href="{% url "blog:category" "Python" %}">Python</a></li>
+                <li><a href="{% url "blog:category" "GoLang" %}">GoLang</a></li>
+                <li><a href="#archives">归档</a></li>
+                <li><a href="/about/">关于</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <!-- /导航条-->
 
-{% block mobile_info %}
-
-{% endblock %}
-
-
-
-
-
-
-<!-- 主内容区-->
 <div class="container">
-
     <div class="row">
 
 
-        <!--col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container-->
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1  col-sm-12 col-xs-12 content-area">
-
-            {% block rotation_chart %}
-
-
-            {% endblock %}
-
+        <!-- .blog-main -->
+        <div class="col-sm-8 blog-main">
             {% block page-main %}
-
-
             {% endblock %}
-
-
         </div>
+        <!-- /.blog-main -->
 
-        <!-- 右边栏 -->
-        <div class="col-lg-3 col-offset-0 col-md-3 col-offset-1 col-sm-12 col-xs-12 sidebar-container ">
 
+        <!-- .blog-sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar hidden-sm">
             <!-- 右边头像区域 -->
-            <div class="col-lg-12 col-offset-0 col-md-12 col-offset-1 visible-lg visible-md about-me">
+            <div class="col-lg-12 col-offset-0 col-md-12 col-offset-1 visible-lg visible-md right-about-me">
                 <div class="right-about-me text-center center-block">
-                    <img src="{% static 'blog/img/me-portrait.jpg' %}" alt="" width="120px" height="120px">
+                    <img src='{% static 'blog/img/me-portrait.jpg' %}'>
                     <h5 class="nickname"><a href="">Heng Wei</a></h5>
                     <p class="signature">虽千万人吾往矣</p>
                     <ul class="list-inline">
-                        <li><a href=""><i class="fa fa-weixin"></i></a></li>
+                        <li><a href="https://www.cnblogs.com/weihengblog/"><i class="fa fa-rss"></i></a></li>
                         <li><a href=""><i class="fa fa-twitter"></i></a></li>
                         <li><a href=""><i class="fa fa-github"></i></a></li>
                         <li><a href=""><i class="fa fa-envelope"></i></a></li>
@@ -97,171 +83,68 @@
                 </div>
             </div>
             <!-- /右边头像区域 -->
-
-            <!-- pc 标签，分类，归档-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-lg visible-md">
-
-                <div class="panel panel-default panel-category">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">最新文章</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="labelListCategory ">
-                            {% get_new_article as article_list %}
-                            {% for article in article_list %}
-                                <a class="label label-default">{{ article.title }}</a>
-                            {% empty %}
-                                <a class="label label-default">无分类</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
+            <!--sidebar-module-inset-->
+            <div class="sidebar-module">
+                <h4>标签</h4>
+                <ol class="list-unstyled">
+                    {% get_tags as get_tags %}
+                    {% for tag in get_tags %}
+                        <li><a href="{% url "blog:tags" tag.name %}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ol>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-lg visible-md">
+            <div class="sidebar-module">
+                <h4>分类</h4>
+                <ol class="list-unstyled">
+                    {% get_classify as get_classify %}
+                    {% for classify in get_classify %}
+                        <li><a href="{% url "blog:category" classify.name %}">{{ classify.name }}</a></li>
+                    {% endfor %}
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">热门标签</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="labelListTag">
-                            {% get_tags as tags_list %}
-                            {% for tag in tags_list %}
-                                <a class="label label-default">{{ tag.name }}</a>
-                            {% empty %}
-                                <a class="label label-default">无标签</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
+                </ol>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-lg visible-md">
+            <div class="sidebar-module" id="archives">
+                <h4>归档</h4>
+                <ol class="list-unstyled">
+                    {% get_archives as get_archives %}
+                    {% for archive in get_archives %}
+                        <li><a href="{% url 'blog:archives' archive.year archive.month %}">{{ archive|date:'Y年m月d日' }}</a></li>
+                    {% endfor %}
 
-                <div class="panel panel-default panel-category">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">分类</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="labelListCategory ">
-                            {% get_classify as categroy_list %}
-                            {% for categroy in categroy_list %}
-                                <a class="label label-default">{{ categroy }}</a>
-                            {% empty %}
-                                <a class="label label-default">无分类</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
+                </ol>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-lg visible-md">
-
-                <div class="panel panel-default panel-category">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">归档</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="labelListCategory ">
-                            {% get_archives as archives_list %}
-                            {% for archives in archives_list %}
-                                <a class="label label-default">{{ archives.year }}年{{ archives.month }}月</a>
-                            {% empty %}
-                                <a class="label label-default">无归档</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
+            <div class="sidebar-module">
+                <h4>友情链接</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://www.python.org/">Python</a></li>
+                    <li><a href="https://www.djangoproject.com/">Django</a></li>
+                    <li><a href="https://studygolang.com/">Go语言中文网</a></li>
+                </ol>
             </div>
-            <!-- /pc 标签，分类，归档-->
-        </div>
-        <!-- /右边栏 -->
 
-        <!--移动端 右边栏-->
-        <div class="container-fluid visible-sm visible-xs">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-sm visible-xs">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">热门标签</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="labelList">
-                         {% get_tags as tags_list %}
-                            {% for tag in tags_list %}
-                                <a class="label label-default">{{ tag.name }}</a>
-                            {% empty %}
-                                <a class="label label-default">无标签</a>
-                            {% endfor %}
-                    </div>
-                </div>
-            </div>
 
         </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-sm visible-xs">
-            <div class="panel panel-default panel-category">
-                <div class="panel-heading">
-                    <h3 class="panel-title">分类</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="labelListCategory ">
-                       {% get_classify as categroy_list %}
-                            {% for categroy in categroy_list %}
-                                <a class="label label-default">{{ categroy }}</a>
-                            {% empty %}
-                                <a class="label label-default">无分类</a>
-                            {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-sm visible-xs">
-                <div class="panel panel-default panel-category">
-                <div class="panel-heading">
-                    <h3 class="panel-title">归档</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="labelListCategory ">
-                       {% get_archives as archives_list %}
-                            {% for archives in archives_list %}
-                                <a class="label label-default">{{ archives.year }}年{{ archives.month }}月</a>
-                            {% empty %}
-                                <a class="label label-default">无归档</a>
-                            {% endfor %}
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!-- /移动端 右边栏-->
+        <!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+</div><!-- /.container -->
 
 
-    </div>
+<footer class="blog-footer">
+    <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a>
+    </p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
 
-
-</div>
-<!-- /主内容区-->
-
-
-<!-- 脚注 -->
-<div class="copyright text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <span>Copyright © <a href="#">Weiheng's Blog</a></span> |
-                <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备xxxxxxxxx号</a></span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /脚注 -->
 
 <script src="{% static 'blog/lib/jquery/jquery.js' %}"></script>
+<script>window.jQuery || document.write('<script src="{% static 'blog/lib/jquery/jquery.js' %}"><\/script>')</script>
 <script src="{% static 'blog/lib/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'blog/js/main.js' %}"></script>
-<script type="text/javascript">
-</script>
+<script src="{% static 'blog/lib/ie10-viewport-bug-workaround.js' %}"></script>
+
+
 </body>
 </html>

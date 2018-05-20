@@ -1,0 +1,243 @@
+/* Bootstrp修改区*/
+
+
+/* 公共样式区 */
+body{
+    margin: 0;
+    padding: 0;
+    padding-top: 56px;
+}
+body a{
+    color: black;
+}
+body a:hover{
+    text-decoration: none;
+}
+
+
+.navbar-default {
+    margin: 0;
+    z-index: 1001;
+}
+/* 导航区*/
+.container-fluid{
+    padding:0 5%;
+}
+.navbar{
+    box-shadow: 1px 2px 5px #9d9d9d;
+}
+.navbar-header > .navbar-logo{
+    padding-left: 30px;
+    line-height: 48px;
+    font-weight: 800;
+    font-size: 18px;
+}
+.navbar-header > .navbar-logo a{
+    color: black;
+}
+.navbar-header > .navbar-logo a:hover{
+    color: black;
+    text-decoration: none;
+}
+.navbar-header > .navbar-logo a span{
+    font-weight: 800;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 3px;
+
+}
+.navbar-default .navbar-nav > li > a{
+    color: #000;
+    font-weight: 800;
+    font-size: 12px;
+    margin-left:12px;
+    display: block;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: #67b168;
+}
+.navbtn{
+    padding-right: 1%;
+}
+.navbar-right{
+    padding: 0 1%;
+}
+
+
+
+/* 移动端显示*/
+.mobile-show{
+    height: 240px;
+    /*background: url("../img/mobile.jpg") center scroll;*/
+    padding-top: 8px;
+    background: rgb(100,100,100) center no-repeat scroll;
+    /*background: url("../img/1(1).jpg") center no-repeat scroll;*/
+    width: 100%;
+    display: table;
+    margin-bottom: 5px;
+    box-shadow: 1px 5px 5px #9d9d9d;
+}
+.mobile-portrait{
+    margin: 0 auto;
+    /*background: url("../img/me-portrait.jpg") center no-repeat;*/
+    width: 100%;
+    /*height: 80px;*/
+    /*border-radius: 50%;*/
+    /*opacity: 0.2;*/
+    font-size: 16px;
+    font-weight: 500;
+    color:white;
+    margin-top: 10px;
+}
+.mobile-portrait img{
+    border: 0 solid white;
+    border-radius: 50%;
+}
+.mobile-portrait .nickname{
+    margin: 8px 0;
+}
+.mobile-portrait .list-inline i{
+    color: beige;
+}
+
+/* 主内容区*/
+.content-area{
+    /*background-color: red;*/
+    /*height: 1000px;*/
+    margin-top: 20px;
+        font-size: 18px;
+    line-height: 1.5;
+}
+
+.content-area .title,p{
+    margin-left:1%;
+
+}
+.content-area p>.count{
+    margin-left: 1px;
+}
+
+.container-fluid{
+    margin: 0;
+    padding: 0;
+}
+#carousel-example-captions{
+    margin-bottom: 20px;
+}
+
+/*.carousel{*/
+    /*width: 100%;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
+/*.slide{*/
+    /*width: 100%;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
+/*.about-me{*/
+    /*!*background-color: green;*!*/
+    /*height: 400px;*/
+/*}*/
+/*.blog-title{*/
+    /*font-size: 1.9em;*/
+    /*margin-bottom: 20px;*/
+    /*line-height: 1.6;*/
+    /*padding: 10px 20px 0;*/
+/*}*/
+/*.blog-mate{*/
+    /*text-align: center;*/
+    /*color: black;*/
+    /*font-size: 13px;*/
+    /*margin-bottom: 30px;*/
+/*}*/
+/*.essay-content{*/
+    /*font-size: 18px;*/
+    /*line-height: 1.5;*/
+
+/*}*/
+/*.essay-content p{*/
+    /*word-spacing: 1px;*/
+    /*font-weight: 400;*/
+    /*text-indent: 2em;*/
+    /*font-family: 'Ubuntu', sans-serif;*/
+/*}*/
+
+.sidebar-container{
+    /*background-color: green;*/
+}
+.right-about-me{
+    margin-top: 20px;
+    /*height: 100px;*/
+}
+.about-me{
+    margin-bottom: 20px;
+}
+.right-about-me img{
+    border: 0 ;
+    border-radius: 50%;
+}
+.right-about-me .nickname{
+    color: #808080 !important;
+    text-decoration: none;
+}
+.right-about-me .nickname a:hover{
+    color: rgb(1,133,161) !important;
+    text-decoration: none;
+}
+.right-about-me .signature{
+    color: rgb(191,191,191);
+}
+
+
+.labelListTag .label{
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px;
+}
+.labelListCategory .label{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+
+/* 版权声明  */
+.copyright {
+    height: 50px;
+    background-color: #111;
+    font-size: 13px;
+    padding-top: 14px;
+    padding-bottom: 20px;
+    border-top: 1px solid #303030;
+    color: white;
+}
+.copyright span{
+    margin: 0 5px;
+}
+.copyright a{
+    color:white;
+}
+.copyright a:hover{
+    color: rgb(191,191,191);
+}
+pre{
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
