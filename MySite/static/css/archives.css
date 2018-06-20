@@ -1,0 +1,14 @@
+.panel-body h3 {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    font-weight: 600;
+}
+.panel-body ul li {
+    letter-spacing: .5px;
+    color: rgba(0,0,0,.6);
+    padding: 2px 0;
+}

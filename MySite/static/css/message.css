@@ -1,0 +1,26 @@
+.comment-area {
+    padding: 0 0 0 5px;
+}
+main .panel-default>.panel-heading {
+    color: #333;
+    background-color: white;
+    border-color: #ddd;
+    font-size: 28px;
+    line-height: 40px;
+    padding: 20px 10px 12px;
+    margin: 0;
+    /* text-transform: uppercase; */
+    border-bottom: solid 1px #EAEAEA;
+}
+
+.message-body .media-body .message-meta{
+    font-size: 12px;
+}
+.message-text{
+        font-size: 14px;
+}
+.media{
+    margin-top: 40px;
+    padding-bottom: 10px;
+    border-bottom: dotted 1px #dddddd;
+}

@@ -1,0 +1,22 @@
+{% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block meta-description %}<meta name="description" content="weiheng的个人博客,记录成长历程.热衷于python，linux等，python web开发专业博客">{% endblock  %}
+{% block meta-keywords %}
+    <meta name="keywords" content="互联网,Python,Golang,个人博客,python语言,python教程,python笔记,Go语言,Go教程,Go笔记">{% endblock %}
+{% block custom_css %}<link rel="stylesheet" href="{% static 'css/archives.css' %}">{% endblock %}
+
+{% block page-main %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2>归档</h2></div>
+        <div class="panel-body clearfix">
+            {% for archive,article_list in article_dic.items %}
+                <h3>{{ archive }}</h3>
+                <ul>
+                    {% for article in article_list %}
+                        <li><a href="{% url 'blog:detail' article.pk %}">{{ article }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

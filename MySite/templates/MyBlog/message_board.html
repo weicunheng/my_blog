@@ -1,0 +1,149 @@
+{% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block meta-description %}<meta name="description" content="weiheng的个人博客,记录成长历程.热衷于python，linux等，python web开发专业博客">{% endblock  %}
+{% block meta-keywords %}<meta name="keywords" content="互联网,Python,Golang,个人博客,python语言,python教程,python笔记,Go语言,Go教程,Go笔记">{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">{% endblock %}
+{% block page-main %}
+    <section class="comment-area" id="comment-area"><h2>发表留言</h2>
+        <form action="{% url 'messageboard:message_board' %}" method="post" class="comment-form"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_nickname">nickname</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user-o"></i></div>
+                            {{ messageboardform.name }}
+                            {#                            <input type="text" class="form-control" id="id_nickname" placeholder="nickname">#}
+                        </div>
+                        <span>{{ messageboardform.errors.0 }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_email">email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></div>
+                            {#                            <input type="text" class="form-control" id="id_email" placeholder="email@xx.com">#}
+                            {{ messageboardform.email }}
+
+                        </div>
+                        <span>{{ messageboardform.errors.email }}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_url">URL</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-link"></i></div>
+                            {#                            <input type="text" class="form-control" id="id_url" placeholder="your blog">#}
+                            {{ messageboardform.url }}
+
+                        </div>
+                        <span>{{ messageboardform.errors.url }}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="id_comment" class="sr-only">评论：</label>
+                    {{ messageboardform.content }}
+                    <button type="submit" id="id_comment" class="comment-btn pull-right"></button>
+                    <label for="id_avatar">
+                        {#                        <i class="fa fa-picture-o"></i>#}
+                        <img id="id_avatar_img" style="width: 40px;height: 40px;"
+                             src="{% static 'img/default.png' %}" title="上传头像">
+                    </label>
+                    <span style="display: none">{{ messageboardform.avatar }}</span>
+                </div>
+                <span>{{ messageboardform.erros.content.0 }}</span>
+            </div>    <!-- row -->
+        </form>
+    </section>{% endblock %}
+{% block custom-main %}
+    <div class="panel panel-default message-board">
+        <div class="panel-heading message-header"><h2>留言板</h2></div>
+
+            <div class="panel-body message-body">
+            <ul class="media-list">
+                {% for message in message_list %}
+                <li class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="/media/{{ message.avatar }}" data-holder-rendered="true"
+                                 style="width: 64px; height: 64px;border-radius: 50%">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <h5>{{ message.name }}</h5>
+                            <div class="message-meta">
+                                {{ message.created_time|date:'Y-m-d H-i-s' }}May 25th, 2018 at 04:36 pm
+                            </div>
+                        </div>
+                        <div class="message-text">
+                            <p>{{ message.content }}</p>
+                        </div>
+
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if all_message.count > 10 %}
+            <nav aria-label="Page navigation">
+
+                    <ul class="pagination">
+                        {{ page_html|safe }}
+                    </ul>
+
+            </nav>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'lib/jquery.min.js' %}"></script>
+    <script>
+
+        $("#id_avatar").change(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function () {
+                $("#id_avatar_img").attr("src", fileReader.result);
+            }
+        });
+
+        $("#id_comment1").click(function () {
+            var formData = new FormData();
+
+            formData.append("id_name",  $("#id_name").val());
+            formData.append("id_email", $("#id_email").val());
+            formData.append("id_url", $("#id_url").val());
+            formData.append("id_comment", $("#id_content").val());
+            formData.append("avatar_img", $("#id_avatar")[0].files[0]);
+            formData.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+            console.log(formData);
+            $. ajax({
+            url: '/message/',
+            type: "post",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status) {
+                    console.log(data);
+                } else {
+                    console.log(data);
+                }
+            }
+        });
+
+        })
+
+    </script>
+{% endblock %}
+
+
+

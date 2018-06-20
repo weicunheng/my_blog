@@ -1,0 +1,28 @@
+{% extends 'MyBlog/base.html' %}{% load static %}
+{% block meta-description %}<meta name="description" content="weiheng的个人博客,记录成长历程.热衷于python，linux等，python web开发专业博客">{% endblock  %}
+{% block meta-keywords %}
+    <meta name="keywords" content="互联网,Python,Golang,个人博客,python语言,python教程,python笔记,Go语言,Go教程,Go笔记">{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'lib/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
+{% block page-main %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2>关于</h2></div>
+        <div class="panel-body clearfix">
+            <div class="author_header clearfix">
+                <img src="{% static 'img/1.jpg' %}" alt="" class="center-block">
+                <div class="author">
+                    <p><i class="fa fa-user"> name：</i>魏恒</p>
+                    <p><i class="fa fa-envelope"> email：</i><a href="mailto:1261360292@qq.com" target="_blank">1261360292@qq.com</a>
+                    </p>
+                    <p><i class="fa fa-github"> github：</i><a href="https://github.com/weicunheng" target="_blank">weicunheng</a>
+                    </p>
+                    <p><i class="fa fa-rss-square"> cnblogs：</i><a href="https://www.cnblogs.com/weihengblog/"
+                                                                   target="_blank">weiheng</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

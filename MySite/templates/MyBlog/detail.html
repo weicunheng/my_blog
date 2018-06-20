@@ -1,0 +1,177 @@
+{% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/github.css' %}">{% endblock %}
+{% block meta-description %}
+    <meta name="description" content="weiheng的个人博客,记录成长历程.热衷于python，linux等，python web开发专业博客">{% endblock %}
+{% block meta-keywords %}
+    <meta name="keywords" content="互联网,Python,Golang,个人博客,python语言,python教程,python笔记,Go语言,Go教程,Go笔记">{% endblock %}
+{% block page-main %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h2>{{ article_obj.title }}</h2></div>
+        <div class="panel-footer clearfix">
+            <ul>
+                <li class="posted-on">
+                    <i class="fa fa-calendar"></i>
+                    <a href="#" rel="bookmark">
+                        <time class="entry-date published dt-published" itemprop="datePublished"
+                              datetime="2018-06-05T11:11:56+00:00">{{ article_obj.created_time|date:'Y-m-d' }}
+                        </time>
+                    </a>
+                </li>
+
+
+                <li class="byline author p-author vcard hcard h-card" itemprop="author ">
+                    <i class="fa fa-user"></i>
+                    <a class="url u-url" href="#" rel="author" itemprop="url"><span
+                            class=" fn p-name" itemprop="name">{{ article_obj.author }}</span></a>
+                </li>
+                <li class="cat-links">
+                    <i class="fa fa-folder-open"></i>
+                    <a href="#" rel="category">{{ article_obj.category }}</a>
+                </li>
+                <li class="comment">
+                    <i class="fa fa-eye"></i><a href="#">{{ article_obj.quantity }} 阅读</a>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="entry-content clearfix">
+                {{ article_obj.body|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom-main %}
+    <section class="comment-area" id="comment-area">
+        <hr>
+        <h3>发表评论</h3>
+        <form action="{% url 'comments:comments' article_obj.pk %}" method="post" class="comment-form"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_nickname">nickname</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user-o"></i></div>
+                            {{ commentform.name }}
+                        </div>
+                        <span>{{ commentform.errors.0 }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_email">email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></div>
+                            {{ commentform.email }}
+                        </div>
+                        <span>{{ commentform.errors.email }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="sr-only" for="id_url">URL</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-link"></i></div>
+                            {{ commentform.url }}
+                        </div>
+                        <span>{{ commentform.errors.url }}</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="id_comment" class="sr-only">评论：</label>
+                    {{ commentform.content }}
+                    <button type="submit" id="id_comment" class="comment-btn pull-right"></button>
+                    <label for="id_avatar">
+                        <img id="id_avatar_img" style="width: 40px;height: 40px;"
+                             src="{% static 'img/default.png' %}" title="上传头像">
+                    </label>
+                    <span style="display: none">{{ commentform.avatar }}</span>
+                </div>
+                <span>{{ commentform.erros.content.0 }}</span>
+            </div>    <!-- row -->
+        </form>
+        <div class="comment-list-panel">
+        </div>
+        <h3>评论列表，共 <span>{{ all_comment.count }}</span> 条评论</h3>
+        <div class="comment_list clearfix">
+
+            <div class="botMessage messageContainer" id="three">
+                <ul class="clearfix">
+                    {% for comment in comment_list %}
+                        <li class="comment-item clearfix">
+                            <div class="">
+                                <div class="avatar">
+                                    <img src="/media/{{ comment.avatar }}"
+                                         style="height: 40px;width: 40px;border-radius: 50%">
+                                </div>
+                                <div class="avatar-info">
+                                    <span class="nickname"><a href="{{ comment.url }}"
+                                                              title="{{ comment.name }}的博客">{{ comment.name }}</a></span>
+                                    <time class="submit-date"
+                                          datetime="2012-11-09T23:15:57+00:00">{{ comment.created_time|date:'Y-m-d H:i:s' }}</time>
+                                </div>
+                            </div>
+                            <div class="msg left">
+                                {{ comment.content }}
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li>暂无评论</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+        {% if all_comment.count > 10 %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {{ page_html|safe }}
+                </ul>
+            </nav>
+        {% endif %}
+    </section>
+    <script src="{% static 'lib/jquery.min.js' %}"></script>
+    <script>
+
+        $("#id_avatar").change(function () {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function () {
+                $("#id_avatar_img").attr("src", fileReader.result);
+            }
+        });
+
+        $("#id_comment1").click(function () {
+            var formData = new FormData();
+
+            formData.append("id_name", $("#id_name").val());
+            formData.append("id_email", $("#id_email").val());
+            formData.append("id_url", $("#id_url").val());
+            formData.append("id_comment", $("#id_content").val());
+            formData.append("avatar_img", $("#id_avatar")[0].files[0]);
+            formData.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+            console.log(formData);
+            $.ajax({
+                url: '{% url 'comments:comments' article_obj.pk %}',
+                type: "post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.status) {
+                        console.log(data);
+                    } else {
+                        console.log(data);
+                    }
+                }
+            });
+
+        })
+
+    </script>
+{% endblock %}
