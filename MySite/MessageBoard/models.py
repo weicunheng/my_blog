@@ -7,7 +7,7 @@ class Message(models.Model):
     content = models.TextField()
     created_time=models.DateTimeField(auto_now_add=True)
     parent_comment = models.ForeignKey(to='self',null=True,blank=True)
-    avatar = models.ImageField(upload_to="boardavatars/", default="boardavatars/default.png",blank=True,null=True)
+    avatar = models.ImageField(upload_to="boardavatars/", default="boardavatars/default.png",blank=True,null=True,)
 
 
     def __str__(self):

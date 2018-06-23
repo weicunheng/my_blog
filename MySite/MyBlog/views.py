@@ -36,7 +36,7 @@ def detail(request, pk):
                                          ])
 
     commentform = CommentForm()
-    all_comment = article_obj.comment_set.all()
+    all_comment = article_obj.comment_set.all().order_by('-created_time')
     current_page = request.GET.get('page')
     page_obj = page.Pagination(current_page=current_page, all_count=all_comment.count(), base_url="/blog/%s" % (pk),
                                per_page_num=10)
@@ -50,7 +50,6 @@ def detail(request, pk):
         'page_html': page_html
     }
     return render(request, 'MyBlog/detail.html', context=context)
-
 
 def archives(request, year, month):
     article_list = models.Article.objects.filter(created_time__year=year,

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q7rrt_q4jzh*%v6&*d%nak(l1e#z&3og3u%bqx7)ufj4c!a=9f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.weiheng.site']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -127,6 +127,8 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 
+# media配置，用户上传的文件都默认放在这个文件夹下
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# Django用户上传的都叫media文件
 MEDIA_URL = "/media/"

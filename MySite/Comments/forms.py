@@ -1,4 +1,4 @@
-from django.forms import ModelForm,TextInput,EmailInput,URLInput,Textarea,ImageField
+from django.forms import ModelForm,TextInput,EmailInput,URLInput,Textarea,FileInput
 from Comments import models
 
 #attrs={'class':"head-portrait",'title':"上传头像"}
@@ -11,6 +11,7 @@ class CommentForm(ModelForm):
             'email': EmailInput(attrs={'class':"form-control",'placeholder':"email@xx.com"}),
             'url': URLInput(attrs={'class':"form-control",'placeholder':"your blog"}),
             'content': Textarea(attrs={'class':"form-control",'placeholder':"看完不留一发？",'style':"resize:none",'rows':"5"}),
+            'avatar':FileInput(attrs={'accept':'image/*','onchange':'verificationPicFile(this)'})
         }
         error_messages = {
             'name': {

@@ -27,7 +27,7 @@ def message_board(request):
                 'comment_list':message_list,
             }
             return render(request,'MyBlog/message_board.html',context=context)
-    all_message = models.Message.objects.all()
+    all_message = models.Message.objects.all().order_by('-created_time')
     current_page = request.GET.get('page')
     page_obj = Pagination(current_page=current_page,all_count=all_message.count(),base_url='/message/',per_page_num=10)
     message_list = all_message[page_obj.start:page_obj.end]

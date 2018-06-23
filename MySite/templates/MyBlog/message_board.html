@@ -81,7 +81,7 @@
                         <div class="media-heading">
                             <h5>{{ message.name }}</h5>
                             <div class="message-meta">
-                                {{ message.created_time|date:'Y-m-d H-i-s' }}May 25th, 2018 at 04:36 pm
+                                {{ message.created_time|date:'Y-m-d H-i-s' }}
                             </div>
                         </div>
                         <div class="message-text">
@@ -106,42 +106,63 @@
 
     <script src="{% static 'lib/jquery.min.js' %}"></script>
     <script>
-
-        $("#id_avatar").change(function () {
-            var fileReader = new FileReader();
-            fileReader.readAsDataURL(this.files[0]);
-            fileReader.onload = function () {
-                $("#id_avatar_img").attr("src", fileReader.result);
-            }
-        });
-
-        $("#id_comment1").click(function () {
-            var formData = new FormData();
-
-            formData.append("id_name",  $("#id_name").val());
-            formData.append("id_email", $("#id_email").val());
-            formData.append("id_url", $("#id_url").val());
-            formData.append("id_comment", $("#id_content").val());
-            formData.append("avatar_img", $("#id_avatar")[0].files[0]);
-            formData.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
-            console.log(formData);
-            $. ajax({
-            url: '/message/',
-            type: "post",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                if (data.status) {
-                    console.log(data);
-                } else {
-                    console.log(data);
+        //图片类型验证
+        function verificationPicType(file) {
+            var fileTypes = [".jpg", ".png"];
+            var filePath = file.value;
+            //当括号里面的值为0、空字符、false 、null 、undefined的时候就相当于false
+            if(filePath){
+                var isNext = false;
+                var fileEnd = filePath.substring(filePath.indexOf("."));
+                for (var i = 0; i < fileTypes.length; i++) {
+                    if (fileTypes[i] == fileEnd) {
+                        isNext = true;
+                        break;
+                    }
                 }
+                if (!isNext){
+                    alert('不接受此文件类型');
+                    file.value = "";
+                    return false;
+                }
+            }else {
+                return false;
             }
-        });
+        }
 
-        })
-
+        //图片大小验证
+        function verificationPicFile(file) {
+            if (verificationPicType(file)){
+                file.value = "";
+                return false;
+            }
+            var fileSize = 0;
+            var fileMaxSize = 2024;//1M
+            var filePath = file.value;
+            if(filePath){
+                fileSize =file.files[0].size;
+                var size = fileSize / 1024;
+                if (size > fileMaxSize) {
+                    alert("文件大小不能大于2M！");
+                    file.value = "";
+                    return false;
+                }else if (size <= 0) {
+                    alert("456");
+                    alert("文件大小不能为0M！");
+                    file.value = "";
+                    return false;
+                }else{
+                    var fileReader = new FileReader();
+                    fileReader.readAsDataURL(file.files[0]);
+                    fileReader.onload = function () {
+                         $("#id_avatar_img").attr("src", fileReader.result);
+                    };
+                    return true;
+                }
+            }else{
+                return false;
+            }
+        }
     </script>
 {% endblock %}
 

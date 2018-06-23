@@ -1,14 +1,15 @@
 from django.shortcuts import render,redirect,get_object_or_404,reverse
 from MyBlog import models
 from Comments.forms import CommentForm
-from django.http import JsonResponse
 
 
 def comments(request,blog_pk):
     article = get_object_or_404(models.Article,pk=blog_pk)
     if request.method == 'POST':
+        # print(request.body)
         commentform = CommentForm(request.POST)
-        print(request.POST)
+
+
         if commentform.is_valid():
             # 校验通过，保存到数据库
             comment = commentform.save(commit=False)
@@ -21,8 +22,6 @@ def comments(request,blog_pk):
             comment.save()
             return redirect(article)
         else:
-            print('error',request.POST)
-            print(commentform.errors)
             comment_list = article.comment_set.all()
             context = {
                 'article_obj':article,

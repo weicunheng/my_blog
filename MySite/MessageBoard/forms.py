@@ -1,4 +1,4 @@
-from django.forms import ModelForm,TextInput,EmailInput,URLInput,Textarea,ImageField
+from django.forms import ModelForm,TextInput,EmailInput,URLInput,Textarea,FileInput
 from MessageBoard import models
 
 class MessageBoardForm(ModelForm):
@@ -10,6 +10,8 @@ class MessageBoardForm(ModelForm):
             'email': EmailInput(attrs={'class':"form-control",'placeholder':"email@xx.com"}),
             'url': URLInput(attrs={'class':"form-control",'placeholder':"your blog"}),
             'content': Textarea(attrs={'class':"form-control",'placeholder':"留言越屌,bug越少",'style':"resize:none",'rows':"5"}),
+            'avatar': FileInput(attrs={'accept': 'image/*', 'onchange': 'verificationPicFile(this)'})
+
         }
         error_messages = {
             'name': {
