@@ -1,6 +1,6 @@
 # MyBlog
 
-[本人博客站](https://www.weiheng.site)
+[本人博客站](http://www.weiheng.site)
 
 # 简介
 Django 可以让你以更快的速度、更少的代码、更轻松的方式搭建更好的 Web 应用。
